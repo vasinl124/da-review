@@ -14,23 +14,26 @@ export class AppComponent {
   image: string;
   storageRef;
   constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any) {
+    // af.auth.login();
+
+    af.auth.login();
     this.items = af.database.list('items');
-    // this.items.push({name: 'something4'});
+    this.items.push({name: 'askjfalskfjslkf'});
     // this.items.update('something', {name: 'somethingchanged'});
     // this.items.remove('something');
 
 
-    this.storageRef = firebaseApp.storage().ref();
 
-    this.storageRef.child('jjda-somethignelse.jpg').getDownloadURL().then((url) => {
-        this.image = url
-        console.log(url);
-      });
+    this.storageRef = firebaseApp.storage().ref();
+    //
+    // this.storageRef.child('jjda-somethignelse.jpg').getDownloadURL().then((url) => {
+    //     this.image = url
+    //     console.log(url);
+    //   });
   }
 
   submit(@Inject(FirebaseApp) firebaseApp: any):void{
     var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
     if (file) {
       console.log(file);
 
@@ -40,6 +43,5 @@ export class AppComponent {
         console.log('Uploaded a blob or file!');
       });;
     }
-    console.log('submit');
   }
 }

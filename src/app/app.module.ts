@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 
@@ -15,6 +15,12 @@ export const firebaseConfig = {
   messagingSenderId: "177689108109"
 };
 
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Anonymous,
+  method: AuthMethods.Anonymous,
+}
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +30,7 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
