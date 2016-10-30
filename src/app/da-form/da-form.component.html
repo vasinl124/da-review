@@ -1,0 +1,84 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Portfolio Review Application</h1>
+    <p class="lead">ใบสมัคร Portfolio Review - กรุณากรอกแบบฟอร์มด้านล่างเลยค่ะ เพื่อ เข้า....</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" [(ngModel)]="participant.fullName" name="full-name" class="form-control" id="full-name" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Nick Name</label>
+          <input type="text" [(ngModel)]="participant.nickName" name="nick-name" class="form-control" id="nick-name" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Age</label>
+          <input type="number" [(ngModel)]="participant.age" name="age" class="form-control" id="age" required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" [(ngModel)]="participant.email" name="email" class="form-control" id="email" aria-describedby="emailHelp"  placeholder="Enter email" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Occupation</label>
+          <input type="text" [(ngModel)]="participant.occupation" name="occupation" class="form-control" id="occupation" required>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Workplace/School</label>
+          <input type="text" [(ngModel)]="participant.workplace" name="workplace" class="form-control" id="workplace" required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleSelect1">Purpose</label>
+          <select class="form-control" [(ngModel)]="participant.purpose" name="purpose" id="exampleSelect1" required>
+            <option value="" selected disabled>Choose Here</option>
+            <option value="school">School</option>
+            <option value="work">Work</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <input type="file" (change)="fileChangeEvent($event)" name="file" class="form-control-file" id="file" required>
+          <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+        </div>
+
+
+        <label class="custom-file">
+          <input type="file" id="file" class="custom-file-input">
+          <span class="custom-file-control"></span>
+        </label>
+
+        <!-- Full name
+        Nick name
+        Age
+        E-mail
+
+        Occupation
+        Workplace/School
+
+
+        Portfolio File (20Mb) only pdf file
+        Purpose -> School, Work -->
+
+        <re-captcha (captchaResponse)="handleCorrectCaptcha($event)"
+                    site_key="6Ld2_BwTAAAAAHfkcisT0TEkCcICmhnq99ev1xLR"></re-captcha>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <small id="fileHelp" class="form-text text-muted">
+          By submitting your information, you agree to our terms and conditions <a>read more</a></small>
+      </form>
+    </div>
+  </div>
+</div>

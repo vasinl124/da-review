@@ -1,19 +1,31 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-full navbar-dark main-nav-bg">
+  <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+  <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/images/da-logo.jpg" width="30" height="30" class="d-inline-block" alt="">
+      DREAM ACTION
+    </a>
+    <ul class="nav navbar-nav float-lg-right">
 
-<ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item.name}}
-
-    {{item.$key}}
-  </li>
-</ul>
-
-<img [src]="image">
-
-<img src="assets/images/black-ribbon-right.png" />
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 
-<input type="file" name="pic" accept="image/*">
-<input type="submit" (click)="submit()">
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+
+<!-- Routed views go here -->
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

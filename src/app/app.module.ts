@@ -2,9 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule }   from '@angular/router';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { ReCaptchaModule } from 'angular2-recaptcha';
+import { AlertModule, DropdownModule, CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
+import { DaFormComponent } from './da-form/da-form.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FooterComponent } from './footer/footer.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -20,17 +27,27 @@ const myFirebaseAuthConfig = {
   method: AuthMethods.Anonymous,
 }
 
-
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DaFormComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AlertModule,
+    DropdownModule,
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    ReCaptchaModule,
+    RouterModule.forRoot([
+     { path: 'apply', component: DaFormComponent },
+     { path: '', component: HomeComponent },
+     { path: '**', component: PageNotFoundComponent }
+   ])
   ],
   providers: [],
   bootstrap: [AppComponent]
