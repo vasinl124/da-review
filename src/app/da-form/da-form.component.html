@@ -8,74 +8,70 @@
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
-      <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" [(ngModel)]="participant.fullName" name="full-name" class="form-control" id="full-name" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Nick Name</label>
-          <input type="text" [(ngModel)]="participant.nickName" name="nick-name" class="form-control" id="nick-name" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Age</label>
-          <input type="number" [(ngModel)]="participant.age" name="age" class="form-control" id="age" required>
+      <form [formGroup]="participantForm" (ngSubmit)="onSubmit(participantForm.value)">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['fullName'].valid && participantForm.controls['fullName'].touched}">
+          <label class="form-control-label" for="fullName">ชื่อ-นามสกุล (จริง)</label>
+          <input type="text" [formControl]="participantForm.controls['fullName']" name="full-name" class="form-control form-control-danger" id="full-name" required>
+          <small id="fullNameHelp" class="form-text text-muted">ชื่อ-นามสกุล จริงเป็นภาษาไทย</small>
+
+          <!-- The hasError method will tell us if a particular error exists -->
+        <div *ngIf="participantForm.controls['fullName'].hasError('required') && participantForm.controls['fullName'].touched" class="alert alert-danger">You must include a first name.</div>
+
         </div>
 
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" [(ngModel)]="participant.email" name="email" class="form-control" id="email" aria-describedby="emailHelp"  placeholder="Enter email" required>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['nickName'].valid}">
+          <label class="form-control-label" for="nickName">ชื่อเล่น</label>
+          <input type="text" [formControl]="participantForm.controls['nickName']" name="nick-name" class="form-control" id="nick-name" required>
         </div>
 
-        <div class="form-group">
-          <label for="name">Occupation</label>
-          <input type="text" [(ngModel)]="participant.occupation" name="occupation" class="form-control" id="occupation" required>
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['age'].valid}">
+          <label class="form-control-label" for="age">อายุ</label>
+          <input type="number" [formControl]="participantForm.controls['age']" name="age" class="form-control" id="age" required>
         </div>
 
-        <div class="form-group">
-          <label for="name">Workplace/School</label>
-          <input type="text" [(ngModel)]="participant.workplace" name="workplace" class="form-control" id="workplace" required>
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['email'].valid}">
+          <label class="form-control-label" for="email">Email address</label>
+          <input type="email" class="form-control" [formControl]="participantForm.controls['email']" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+          <small id="emailHelp" class="form-text text-muted">ทางเราจะไม่แชร์ email ของคุณกับใครแน่นอนค่ะ</small>
         </div>
 
-        <div class="form-group">
-          <label for="exampleSelect1">Purpose</label>
-          <select class="form-control" [(ngModel)]="participant.purpose" name="purpose" id="exampleSelect1" required>
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['occupation'].valid}">
+          <label class="form-control-label" for="occupation">อาชีพ</label>
+          <input type="text" [formControl]="participantForm.controls['occupation']" name="occupation" class="form-control" id="occupation" required>
+          <small id="occupationHelp" class="form-text text-muted">ถ้าเรียนอยู่ให้ลงชั้นปี ชื่อโรงเรียน/มหาวิทยาลัย</small>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['workplace'].valid}">
+          <label class="form-control-label" for="workplace">ที่ทำงาน หรือ โรงเรียน</label>
+          <input type="text" [formControl]="participantForm.controls['workplace']" name="workplace" class="form-control" id="workplace" required>
+        </div>
+
+
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['purpose'].valid}">
+          <label class="form-control-label" for="purpose">เหตุผลที่อยากจะส่ง Portfolio Review</label>
+          <select class="form-control" [formControl]="participantForm.controls['purpose']" name="purpose" id="purpose" required>
             <option value="" selected disabled>Choose Here</option>
-            <option value="school">School</option>
-            <option value="work">Work</option>
+            <option value="school">เพื่อเอาไปเรียนต่อ</option>
+            <option value="work">เพื่อเอาไปสมัครงาน</option>
           </select>
         </div>
 
+        {{participantForm.controls['portfolioFileSize'].valid}}
         <div class="form-group">
-          <label for="exampleInputFile">File input</label>
-          <input type="file" (change)="fileChangeEvent($event)" name="file" class="form-control-file" id="file" required>
-          <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+          <label class="form-control-label" for="file">Upload Portfolio ของคุณที่นี่</label>
+          <input type="file" accept="application/pdf" (change)="fileChangeEvent($event)" name="file" class="form-control-file" id="file" required>
+          <small id="fileHelp" class="form-text text-muted">File Portfolio ต้องเป็น File PDF และมีขนาดไม่เกิน 20Mb เท่านั้น</small>
         </div>
 
 
-        <label class="custom-file">
-          <input type="file" id="file" class="custom-file-input">
-          <span class="custom-file-control"></span>
-        </label>
-
-        <!-- Full name
-        Nick name
-        Age
-        E-mail
-
-        Occupation
-        Workplace/School
-
-
-        Portfolio File (20Mb) only pdf file
-        Purpose -> School, Work -->
-
+        <!-- **TODO*** -->
+        <!-- ADD FORM VALIDATION ! -->
+        {{participantForm.controls['reCaptcha'].valid}}
         <re-captcha (captchaResponse)="handleCorrectCaptcha($event)"
                     site_key="6Ld2_BwTAAAAAHfkcisT0TEkCcICmhnq99ev1xLR"></re-captcha>
 
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!participantForm.valid">Submit</button>
         <small id="fileHelp" class="form-text text-muted">
           By submitting your information, you agree to our terms and conditions <a>read more</a></small>
       </form>

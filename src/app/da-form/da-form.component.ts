@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseApp } from 'angularfire2';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 
 
 @Component({
@@ -9,23 +11,28 @@ import { AngularFire, FirebaseListObservable, FirebaseApp } from 'angularfire2';
 })
 export class DaFormComponent implements OnInit {
 
+  participantForm : FormGroup;
   storageRef;
   portfolio;
 
-  participant = {
-    fullName: '',
-    nickName: '',
-    age: '',
-    email: '',
-    occupation: '',
-    workplace: '',
-    purpose: '',
-    portfolioPath: '',
-    time: ''
-  };
+  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder) {
+
+    this.participantForm = fb.group({
+     fullName: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+     nickName: [null, Validators.required],
+     age: [null, Validators.required],
+     email: [null, [Validators.required, CustomValidators.email]],
+     occupation: [null, Validators.required],
+     workplace: [null, Validators.required],
+     purpose: [null, Validators.required],
+     fileSize: [null, Validators.compose([Validators.required, Validators.minLength(500000), Validators.maxLength(20000000)])],
+     portfolioPath: '',
+     time: '',
+     portfolioFileSize : new FormControl('', [Validators.required, CustomValidators.max(20 * 1024 * 1024)]),
+     reCaptcha : new FormControl('', Validators.required)
+    })
 
 
-  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any) {
     // af.auth.login();
 
     // af.auth.login();
@@ -33,8 +40,6 @@ export class DaFormComponent implements OnInit {
     // this.items.push({name: 'askjfalskfjslkf'});
     // this.items.update('something', {name: 'somethingchanged'});
     // this.items.remove('something');
-
-    console.log(this.participant);
 
     this.storageRef = firebaseApp.storage().ref();
     //
@@ -47,12 +52,13 @@ export class DaFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  onSubmit(value: any) {
     console.log('onSubmit');
-    console.log(this.participant);
-    console.log(this.portfolio);
-
-    console.log(this.portfolio.name);
+    console.log(value);
+    // console.log(this.participant);
+    // console.log(this.portfolio);
+    //
+    // console.log(this.portfolio.name);
 
     // if (this.portfolio) {
     //   console.log(this.portfolio);
@@ -71,17 +77,22 @@ export class DaFormComponent implements OnInit {
     // random file name -> images/xxxxx.png
 
 
+    // Add validation in html, database, and
+
     // radom pick monthly ->  within ... 3 months.
+
+    // after submit add thie customer to mailing list...
+
+    // Add thank you page
 
   }
 
   fileChangeEvent(fileInput: any){
     this.portfolio = fileInput.target.files[0];
-    console.log(this.portfolio);
-
+    this.participantForm.controls['portfolioFileSize'].setValue(this.portfolio.size);
   }
 
-  handleCorrectCaptcha(event) {
-    console.log(event);
+  handleCorrectCaptcha(token) {
+    this.participantForm.controls['reCaptcha'].setValue(token);
   }
 }
