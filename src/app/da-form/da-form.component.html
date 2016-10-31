@@ -4,77 +4,113 @@
     <p class="lead">ใบสมัคร Portfolio Review - กรุณากรอกแบบฟอร์มด้านล่างเลยค่ะ เพื่อ เข้า....</p>
   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
       <form [formGroup]="participantForm" (ngSubmit)="onSubmit(participantForm.value)">
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['fullName'].valid && participantForm.controls['fullName'].touched}">
-          <label class="form-control-label" for="fullName">ชื่อ-นามสกุล (จริง)</label>
-          <input type="text" [formControl]="participantForm.controls['fullName']" name="full-name" class="form-control form-control-danger" id="full-name" required>
-          <small id="fullNameHelp" class="form-text text-muted">ชื่อ-นามสกุล จริงเป็นภาษาไทย</small>
+        <!-- <div class="form-group"
+            [ngClass]="{'has-danger':!participantForm.controls['fullName'].valid && participantForm.controls['fullName'].touched}">
+          <label class="form-control-label" for="fullName">ชื่อ-นามสกุล</label>
+          <input type="text" [formControl]="participantForm.controls['fullName']"
+                 name="full-name"
+                 class="form-control"
+                 [ngClass]="{'form-control-danger':!participantForm.controls['fullName'].valid && participantForm.controls['fullName'].touched}"
+                 id="full-name" required>
+          <small id="fullNameHelp" class="form-text text-muted">ชื่อและนามสกุลจริงเป็นภาษาไทย</small>
 
-          <!-- The hasError method will tell us if a particular error exists -->
-        <div *ngIf="participantForm.controls['fullName'].hasError('required') && participantForm.controls['fullName'].touched" class="alert alert-danger">You must include a first name.</div>
-
+          <small *ngIf="participantForm.controls['fullName'].hasError('required') && participantForm.controls['fullName'].touched" class="form-text alert-danger">ต้องใส่ชื่อ-นามสกุล</small>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['nickName'].valid}">
+        <div class="form-group"
+            [ngClass]="{'has-danger':!participantForm.controls['nickName'].valid && participantForm.controls['nickName'].touched}">
           <label class="form-control-label" for="nickName">ชื่อเล่น</label>
-          <input type="text" [formControl]="participantForm.controls['nickName']" name="nick-name" class="form-control" id="nick-name" required>
+          <input type="text" [formControl]="participantForm.controls['nickName']"
+                 name="nick-name"
+                 class="form-control"
+                 [ngClass]="{'form-control-danger':!participantForm.controls['nickName'].valid && participantForm.controls['nickName'].touched}"
+                 id="nick-name" required>
+
+         <small *ngIf="participantForm.controls['nickName'].hasError('required') && participantForm.controls['nickName'].touched" class="form-text alert-danger">ต้องใส่ชื่อ-นามสกุล</small>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['age'].valid}">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['age'].valid && participantForm.controls['age'].touched}">
           <label class="form-control-label" for="age">อายุ</label>
           <input type="number" [formControl]="participantForm.controls['age']" name="age" class="form-control" id="age" required>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['email'].valid}">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['email'].valid && participantForm.controls['email'].touched}">
           <label class="form-control-label" for="email">Email address</label>
           <input type="email" class="form-control" [formControl]="participantForm.controls['email']" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
           <small id="emailHelp" class="form-text text-muted">ทางเราจะไม่แชร์ email ของคุณกับใครแน่นอนค่ะ</small>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['occupation'].valid}">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['occupation'].valid && participantForm.controls['occupation'].touched}">
           <label class="form-control-label" for="occupation">อาชีพ</label>
           <input type="text" [formControl]="participantForm.controls['occupation']" name="occupation" class="form-control" id="occupation" required>
           <small id="occupationHelp" class="form-text text-muted">ถ้าเรียนอยู่ให้ลงชั้นปี ชื่อโรงเรียน/มหาวิทยาลัย</small>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['workplace'].valid}">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['workplace'].valid && participantForm.controls['workplace'].touched}">
           <label class="form-control-label" for="workplace">ที่ทำงาน หรือ โรงเรียน</label>
           <input type="text" [formControl]="participantForm.controls['workplace']" name="workplace" class="form-control" id="workplace" required>
         </div>
 
 
-        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['purpose'].valid}">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['purpose'].valid && participantForm.controls['purpose'].touched}">
           <label class="form-control-label" for="purpose">เหตุผลที่อยากจะส่ง Portfolio Review</label>
           <select class="form-control" [formControl]="participantForm.controls['purpose']" name="purpose" id="purpose" required>
             <option value="" selected disabled>Choose Here</option>
             <option value="school">เพื่อเอาไปเรียนต่อ</option>
             <option value="work">เพื่อเอาไปสมัครงาน</option>
           </select>
-        </div>
+        </div> -->
 
-        {{participantForm.controls['portfolioFileSize'].valid}}
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-danger':!participantForm.controls['portfolioFileSize'].valid && participantForm.controls['portfolioFileSize'].touched}">
           <label class="form-control-label" for="file">Upload Portfolio ของคุณที่นี่</label>
           <input type="file" accept="application/pdf" (change)="fileChangeEvent($event)" name="file" class="form-control-file" id="file" required>
           <small id="fileHelp" class="form-text text-muted">File Portfolio ต้องเป็น File PDF และมีขนาดไม่เกิน 20Mb เท่านั้น</small>
+
+          <small *ngIf="participantForm.controls['portfolioFileSize'].hasError('max') && participantForm.controls['portfolioFileSize'].touched" class="form-text alert-danger">File มีขนาดเกิน 20Mb</small>
         </div>
 
-
-        <!-- **TODO*** -->
-        <!-- ADD FORM VALIDATION ! -->
-        {{participantForm.controls['reCaptcha'].valid}}
         <re-captcha (captchaResponse)="handleCorrectCaptcha($event)"
+                    (captchaExpired)="handleExpired($event)"
                     site_key="6Ld2_BwTAAAAAHfkcisT0TEkCcICmhnq99ev1xLR"></re-captcha>
 
         <br>
-        <button type="submit" class="btn btn-primary" [disabled]="!participantForm.valid">Submit</button>
+        <button type="submit"
+                class="btn btn-primary"
+
+                >
+                [disabled]="!participantForm.valid"
+
+                Submit</button>
         <small id="fileHelp" class="form-text text-muted">
           By submitting your information, you agree to our terms and conditions <a>read more</a></small>
       </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- control modal from parent component -->
+<div bsModal
+     #childModal="bs-modal"
+     [config]="{backdrop: 'static'}"
+     class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Uploading Your Portfolio</h4>
+      </div>
+      <div class="modal-body">
+        Please wait... we are uploading your portfolio to the server.
+      </div>
     </div>
   </div>
 </div>
