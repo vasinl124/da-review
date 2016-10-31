@@ -19,7 +19,8 @@ export class DaFormComponent implements OnInit {
   storageRef;
   portfolio;
   af;
-  progress = 0;
+  isRegistered = false;
+  submitting = false;
 
   constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder) {
 
@@ -42,50 +43,59 @@ export class DaFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  stringGen(len){
+      var text = "";
+      var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < len; i++ )
+          text += charset.charAt(Math.floor(Math.random() * charset.length));
+      return text;
+  }
+
+
   onSubmit(value: any) {
-    // value.time = Date.now();
-    value.portfolioPath = `user_uploads/${this.portfolio.name}`
-    // delete value.reCaptcha;
-    // delete value.portfolioFileSize;
-    // console.log(value);
+    this.submitting = true;
+    value.time = Date.now();
+    value.portfolioPath = `user_uploads/${this.stringGen(6)}${this.portfolio.name}`
+    delete value.reCaptcha;
+    delete value.portfolioFileSize;
 
-
-
-
-
-    //
-    // this.af.auth.login();
-    //
-    // this.items.update('something', {name: 'somethingchanged'});
-    // this.items.remove('something');
-    //
-
-    // this.users = this.af.database.list('users');
-    // this.users.push(value);
+    this.af.auth.login();
 
     if (this.portfolio) {
       this.showChildModal();
       var uploadTask = this.storageRef.child(value.portfolioPath)
       .put(this.portfolio)
       .then((snapshot) => {
+        // add data/ref to database;
+        let queryObservable = this.af.database.list('users', {
+          query: {
+           orderByChild: 'email',
+           equalTo: value.email
+          }
+        });
+
+        queryObservable.subscribe(queriedItems => {
+          if (queriedItems.length > 0) {
+            this.af.database.object(`users/${queriedItems[0].$key}`).update(value);
+          } else {
+            this.users = this.af.database.list('users');
+            this.users.push(value);
+          }
+        });
+        this.isRegistered = true;
         this.hideChildModal();
+
       });
     }
-
-    // find existing email first if so update the one with new information...
-
-    // if email is not found then add new item....
-
-    // random file name -> images/xxxxx.png
-
-
-    // Add validation in html, database, and
 
     // radom pick monthly ->  within ... 3 months.
 
     // after submit add thie customer to mailing list...
+    // confirmation email-->
 
     // Add thank you page
+
+
 
   }
 
@@ -103,7 +113,6 @@ export class DaFormComponent implements OnInit {
   }
 
   handleExpired(e) {
-    console.log('expired! ', e );
     this.participantForm.controls['reCaptcha'].setValue('');
   }
 
