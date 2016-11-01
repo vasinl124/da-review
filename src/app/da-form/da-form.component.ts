@@ -84,7 +84,7 @@ export class DaFormComponent implements OnInit {
             this.users = this.af.database.list('users');
             this.users.push(value);
           }
-        }).unsubscribe();
+        });
 
         // adding email to mailing list
         let mailchimpUrl = `
