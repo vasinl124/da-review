@@ -89,7 +89,7 @@ export class DaFormComponent implements OnInit {
 
         // adding email to mailing list
         let mailchimpUrl = `
-        https://trektonic.us9.list-manage.com/subscribe/post-json?u=b1987670b8f559efd418e7d79&id=3eefc9f7ca&subscribe=Subscribe&EMAIL=${value.email}&c=JSONP_CALLBACK`;
+        https://dreamaction.us14.list-manage.com/subscribe/post-json?u=a762fb13b6b4e5406f85f0d79&id=2680e8e29b&subscribe=Subscribe&EMAIL=${value.email}&c=JSONP_CALLBACK`;
         this.jsonp.request(mailchimpUrl, { method: 'Get' })
          .subscribe((res) => {
            this.hideChildModal();
