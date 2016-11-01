@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseApp } from 'angularfire2';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Http, Response, Headers, RequestOptions, Jsonp } from '@angular/http';
@@ -24,7 +24,7 @@ export class DaFormComponent implements OnInit {
   isRegistered = false;
   submitting = false;
 
-  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder, private http: Http, jsonp: Jsonp) {
+  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder, private http: Http, jsonp: Jsonp, private _ngZone: NgZone) {
     this.jsonp = jsonp;
 
     this.participantForm = fb.group({
@@ -84,8 +84,7 @@ export class DaFormComponent implements OnInit {
             this.users = this.af.database.list('users');
             this.users.push(value);
           }
-        });
-        this.isRegistered = true;
+        }).unsubscribe();
 
         // adding email to mailing list
         let mailchimpUrl = `
@@ -93,10 +92,12 @@ export class DaFormComponent implements OnInit {
         this.jsonp.request(mailchimpUrl, { method: 'Get' })
          .subscribe((res) => {
            this.hideChildModal();
+           this._ngZone.run(() => {
+               this.isRegistered = true;
+               console.log('Updated List: ', this.isRegistered);
+           });
           //  console.log(res.json() );
          });
-
-
       });
     }
     // radom pick monthly ->  within ... 3 months.
