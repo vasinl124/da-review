@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseApp } from 'angularfire2';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Http, Response, Headers, RequestOptions, Jsonp } from '@angular/http';
 import { CustomValidators } from 'ng2-validation';
 
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
@@ -19,10 +20,12 @@ export class DaFormComponent implements OnInit {
   storageRef;
   portfolio;
   af;
+  jsonp;
   isRegistered = false;
   submitting = false;
 
-  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder) {
+  constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, fb: FormBuilder, private http: Http, jsonp: Jsonp) {
+    this.jsonp = jsonp;
 
     this.participantForm = fb.group({
      fullName: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -83,20 +86,20 @@ export class DaFormComponent implements OnInit {
           }
         });
         this.isRegistered = true;
-        this.hideChildModal();
+
+        // adding email to mailing list
+        let mailchimpUrl = `
+        https://trektonic.us9.list-manage.com/subscribe/post-json?u=b1987670b8f559efd418e7d79&id=3eefc9f7ca&subscribe=Subscribe&EMAIL=${value.email}&c=JSONP_CALLBACK`;
+        this.jsonp.request(mailchimpUrl, { method: 'Get' })
+         .subscribe((res) => {
+           this.hideChildModal();
+          //  console.log(res.json() );
+         });
+
 
       });
     }
-
     // radom pick monthly ->  within ... 3 months.
-
-    // after submit add thie customer to mailing list...
-    // confirmation email-->
-
-    // Add thank you page
-
-
-
   }
 
   fileChangeEvent(fileInput: any){
