@@ -167,9 +167,26 @@ hr {
 }
 
 /* submit-section */
+.submit-section {
+  pointer-events: none;
+  background-color: gray;
+  color:white;
+}
+
 .submit-section .row{
   height: 100vh;
 }
+
+.submit-button {
+  pointer-events: auto;
+}
+
+.submit-section:hover {
+  background-color: white;
+  color: black;
+}
+
+
 
 @media screen and (max-width: 991px) {
   .main-p {
