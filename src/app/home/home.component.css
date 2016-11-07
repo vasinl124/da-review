@@ -1,3 +1,6 @@
+.main-container .row {
+  height: 100vh;
+}
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +55,8 @@ hr {
 
 /* WHAT Section */
 .what-section {
-  background-image: url(../assets/images/bg/photo-1444882158336-bcfbd9298309.jpeg);
+  /*background-image: url(../assets/images/bg/photo-1444882158336-bcfbd9298309.jpeg);*/
+  background-color: black;
   background-position: center center;
   background-size: cover;
   background-attachment:fixed;
@@ -147,7 +151,8 @@ hr {
 
 /* testimonial-section */
 .testimonial-section {
-  background-image: url(../assets/images/bg/photo-1430417934865-589b63ad5c00.jpeg);
+  /*background-image: url(../assets/images/bg/photo-1430417934865-589b63ad5c00.jpeg);*/
+  background-color: white;
   background-position: center center;
   background-size: cover;
 }
