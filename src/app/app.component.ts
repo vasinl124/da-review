@@ -13,4 +13,6 @@ export class AppComponent {
     this.viewContainerRef = viewContainerRef;
   }
 
+  public isCollapsed:boolean = true;
+
 }

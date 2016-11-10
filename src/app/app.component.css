@@ -13,12 +13,10 @@
     text-align: center;
     margin:0 auto;
     padding: 0px;
+    z-index:-1;
 }
-.navbar-toggle {
-    z-index:3;
-}
-
 
 .navbar-nav {
-  padding: 20 0;
+  z-index: 3;
+  /*padding: 20 0;*/
 }

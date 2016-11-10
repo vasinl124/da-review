@@ -40,7 +40,7 @@ hr {
 
 /* WHY SECTION */
 .why-section {
-  background-image: url(../assets/images/bg/photo-1461695008884-244cb4543d74.jpeg);
+  background-image: url(../assets/images/bg/photo-1461695008884-244cb4543d74.jpg);
   background-position: center center;
   background-size: cover;
   height:100vh;
@@ -55,7 +55,7 @@ hr {
 
 /* WHAT Section */
 .what-section {
-  /*background-image: url(../assets/images/bg/photo-1444882158336-bcfbd9298309.jpeg);*/
+  /*background-image: url(../assets/images/bg/photo-1444882158336-bcfbd9298309.jpg);*/
   background-color: black;
   background-position: center center;
   background-size: cover;
@@ -83,7 +83,7 @@ hr {
 
 /* Timeline */
 .timeline {
-  background-image: url(../assets/images/bg/photo-1469751434990-62dd6a1c5b29.jpeg);
+  background-image: url(../assets/images/bg/photo-1469751434990-62dd6a1c5b29.jpg);
   background-position: center center;
   background-size: cover;
   background-attachment:fixed;
@@ -151,7 +151,7 @@ hr {
 
 /* testimonial-section */
 .testimonial-section {
-  /*background-image: url(../assets/images/bg/photo-1430417934865-589b63ad5c00.jpeg);*/
+  /*background-image: url(../assets/images/bg/photo-1430417934865-589b63ad5c00.jpg);*/
   background-color: white;
   background-position: center center;
   background-size: cover;
@@ -159,7 +159,7 @@ hr {
 
 /* instruction-section */
 .instruction-section {
-  background-image: url(../assets/images/bg/photo-1443641723753-250ff9bb3c83.jpeg);
+  background-image: url(../assets/images/bg/photo-1443641723753-250ff9bb3c83.jpg);
   background-position: center center;
   background-size: cover;
   background-attachment:fixed;
@@ -198,6 +198,15 @@ hr {
     margin-left: 0px;
     max-width: 300px;
   }
+
+
+  .timeline ul li div {
+    width: 250px;
+  }
+  .timeline ul li:nth-child(even) div {
+    left: -289px; /*250+45-6*/
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -205,6 +214,27 @@ hr {
     padding-left: 10%;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .timeline ul li {
+    margin-left: 20px;
+  }
+
+  .timeline ul li div {
+    width: calc(90vw - 91px);
+  }
+
+  .timeline ul li:nth-child(even) div {
+    left: 45px;
+  }
+
+  .timeline ul li:nth-child(even) div::before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #F45B69 transparent transparent;
+  }
+}
+
 
 @media screen and (max-width: 414px) {
   .col h1, .col .main-p, .col hr {

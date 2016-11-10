@@ -1,38 +1,77 @@
-<nav class="navbar navbar-full navbar-dark main-nav-bg">
+<!-- <nav class="navbar navbar-full navbar-dark main-nav-bg">
   <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
   <div class="collapse navbar-toggleable-md" id="navbarResponsive">
-    <a class="navbar-brand" routerLink="/">
-      <img src="assets/images/da-review-logo-01.jpg" height="60" class="d-inline-block" alt="">
-    </a>
+    <div class="navbar-brand">
+      <a routerLink="/">
+        <img src="assets/images/da-review-logo-01.jpg" height="60" class="d-inline-block" alt="">
+      </a>
+    </div>
 
-    <!-- <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav float-xs-right">
       <li class="nav-item">
-        <a  class="nav-link">Intro</a>
+        <a class="nav-link" href="https://dreamaction.co/">Blog</a>
       </li>
       <li class="nav-item">
-        <a  class="nav-link">Why?</a>
-      </li>
-      <li class="nav-item">
-        <a  class="nav-link">What?</a>
-      </li>
-      <li class="nav-item">
-        <a  class="nav-link">Apply</a>
-      </li>
-    </ul> -->
-
-    <ul class="nav navbar-nav float-lg-right">
-      <li class="nav-item">
-        <a  class="nav-link" href="https://dreamaction.co/" routerLinkActive="active">Blog</a>
-      </li>
-      <li class="nav-item">
-        <a  class="nav-link" href="https://dreamaction.co/" routerLinkActive="active">FAQs</a>
+        <a  class="nav-link" href="https://dreamaction.co/">FAQs</a>
       </li>
       <li class="nav-item">
         <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
       </li>
     </ul>
   </div>
+</nav> -->
+
+
+<nav class="navbar navbar-full navbar-dark main-nav-bg">
+  <button class="navbar-toggler hidden-md-up"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="isCollapsed = !isCollapsed"></button>
+
+
+  <div class="navbar-brand">
+    <a routerLink="/">
+      <img src="assets/images/da-review-logo-01.jpg" height="60" class="d-inline-block" alt="">
+    </a>
+  </div>
+
+
+
+  <ul class="nav navbar-nav float-sm-right hidden-sm-down">
+    <li class="nav-item">
+      <a class="nav-link" href="https://dreamaction.co/">Blog</a>
+    </li>
+    <li class="nav-item">
+      <a  class="nav-link" href="https://dreamaction.co/">FAQs</a>
+    </li>
+    <li class="nav-item">
+      <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
+    </li>
+  </ul>
 </nav>
+
+<div class="collapse navbar-toggleable-sm" id="exCollapsingNavbar"
+[collapse]="isCollapsed">
+  <div class="bg-inverse text-muted p-1">
+    <ul class="nav navbar-nav float-sm-right">
+      <li class="nav-item">
+        <a class="nav-link" href="https://dreamaction.co/">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" href="https://dreamaction.co/">FAQs</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
 
 <!-- Routed views go here -->
 <router-outlet></router-outlet>

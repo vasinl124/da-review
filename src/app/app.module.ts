@@ -8,6 +8,7 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
 import { AlertModule, DropdownModule, CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
+
 import { AppComponent } from './app.component';
 import { DaFormComponent } from './da-form/da-form.component';
 import { HomeComponent } from './home/home.component';
@@ -45,6 +46,7 @@ const myFirebaseAuthConfig = {
     AlertModule,
     DropdownModule,
     ModalModule,
+    CollapseModule,
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     ReCaptchaModule,
     RouterModule.forRoot([
