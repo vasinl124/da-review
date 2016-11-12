@@ -2,6 +2,52 @@
   padding: 5px;
 }
 
+.da-form-container {
+  background-color: #353535;
+  padding: 30px;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.da-form-header-row {
+  padding: 30px 20px;
+  background-color: #353535 !important;
+  color: white;
+}
+
+.da-form-subheader {
+  padding: 15px 0px;
+  background-color: #151515;
+  color: white;
+}
+
+.da-form-subheader p {
+  margin: 0px;
+}
+
+.da-form-form {
+  padding: 15px 30px;
+
+}
+
+.confirm-row {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.confirm-row .col {
+  display: flex;
+  align-items: center;
+}
+
+.confirm-row a {
+  color: #dd731b;
+}
+
+
 
 .loader,
 .loader:before,
