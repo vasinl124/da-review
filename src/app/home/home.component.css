@@ -120,9 +120,9 @@ video {
   height: auto;
   background-color: white;
   z-index: -1000;
-  background-image: url(/assets/images/poster.png);
-  background-size: cover;
-  background-position: center center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .text {
@@ -132,14 +132,8 @@ video {
 }
 
 
-
-
-
-
-
 /* testimonial-section */
 .testimonial-section {
-  /*background-image: url(../assets/images/bg/photo-1430417934865-589b63ad5c00.jpg);*/
   background-color: white;
   background-position: center center;
   background-size: cover;
@@ -161,35 +155,18 @@ video {
   background-position: center center;
   background-size: cover;
   background-attachment:fixed;
-
-
 }
 
 .instruction-section .container {
   margin: 20px auto;
-  /*background-color: rgba(0, 0, 0, 0.4);*/
   color: white;
 }
 
 /* submit-section */
-.submit-section {
-  pointer-events: none;
-  /*background-color: gray;*/
-  /*color:white;*/
-}
-
 .submit-section .row{
   height: 100vh;
 }
 
-.submit-button {
-  pointer-events: auto;
-}
-
-.submit-section:hover {
-  background-color: white;
-  color: black;
-}
 
 /*@media screen and (max-width: 991px) {
 }
@@ -206,5 +183,11 @@ video {
   /* WHY SECTION 2 */
   .why-section-2 {
     background-image:none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h2 {
+    font-size: 2.5rem;
   }
 }
