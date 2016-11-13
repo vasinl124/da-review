@@ -8,6 +8,7 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
 import { AlertModule, DropdownModule, CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 import { AppComponent } from './app.component';
 import { DaFormComponent } from './da-form/da-form.component';
@@ -53,9 +54,12 @@ const myFirebaseAuthConfig = {
      { path: 'apply', component: DaFormComponent },
      { path: '', component: HomeComponent },
      { path: '**', component: PageNotFoundComponent }
-   ])
+   ]),
+   Angulartics2Module.forRoot()
   ],
-  providers: [],
+  providers: [
+    Angulartics2GoogleAnalytics
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
