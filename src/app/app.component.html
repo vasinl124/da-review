@@ -1,12 +1,12 @@
 <nav class="navbar navbar-full navbar-dark main-nav-bg">
-  <button class="navbar-toggler hidden-md-up"
+  <!-- <button class="navbar-toggler hidden-md-up"
           type="button"
           data-toggle="collapse"
           data-target="#navbarResponsive"
           aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          (click)="isCollapsed = !isCollapsed"></button>
+          (click)="isCollapsed = !isCollapsed"></button> -->
 
 
   <div class="navbar-brand">
@@ -17,36 +17,15 @@
 
 
 
-  <ul class="nav navbar-nav float-sm-right hidden-sm-down">
+  <ul class="nav navbar-nav float-xs-right">
     <li class="nav-item">
       <a class="nav-link" href="https://dreamaction.co/">Blog</a>
     </li>
-    <li class="nav-item">
-      <a  class="nav-link" href="https://dreamaction.co/">FAQs</a>
-    </li>
-    <li class="nav-item">
+    <li class="nav-item nav-apply-menu">
       <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
     </li>
   </ul>
 </nav>
-
-<div class="collapse navbar-toggleable-sm hidden-md-up" id="exCollapsingNavbar"
-[collapse]="isCollapsed">
-  <div class="bg-inverse text-muted p-1">
-    <ul class="nav navbar-nav float-sm-right ">
-      <li class="nav-item">
-        <a class="nav-link" href="https://dreamaction.co/">Blog</a>
-      </li>
-      <li class="nav-item">
-        <a  class="nav-link" href="https://dreamaction.co/">FAQs</a>
-      </li>
-      <li class="nav-item">
-        <a  class="nav-link" routerLink="/apply" routerLinkActive="active">Apply</a>
-      </li>
-    </ul>
-  </div>
-
-</div>
 
 
 <!-- Routed views go here -->
