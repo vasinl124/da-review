@@ -162,6 +162,14 @@ video {
   color: white;
 }
 
+.instruction-section ul {
+  padding-left: 1rem;
+}
+
+.instruction-section h4 {
+  padding-left: 1rem;
+}
+
 /* submit-section */
 .submit-section {
   background:linear-gradient(
