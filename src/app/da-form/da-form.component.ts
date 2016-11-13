@@ -94,13 +94,10 @@ export class DaFormComponent implements OnInit {
            this.hideChildModal();
            this._ngZone.run(() => {
                this.isRegistered = true;
-               console.log('Updated List: ', this.isRegistered);
            });
-          //  console.log(res.json() );
          });
       });
     }
-    // radom pick monthly ->  within ... 3 months.
   }
 
   fileChangeEvent(fileInput: any){
