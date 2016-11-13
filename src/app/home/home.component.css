@@ -60,6 +60,10 @@ a {
   font-weight: 200;
 }
 
+.what-section p {
+  color:#989898;
+}
+
 .what-section .what-header-row {
   padding-bottom: 0px;
 }
