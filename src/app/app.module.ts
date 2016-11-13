@@ -9,7 +9,6 @@ import { AlertModule, DropdownModule, CollapseModule } from 'ng2-bootstrap/ng2-b
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
-import { MetaModule } from 'ng2-meta';
 
 import { AppComponent } from './app.component';
 import { DaFormComponent } from './da-form/da-form.component';
@@ -65,8 +64,7 @@ const myFirebaseAuthConfig = {
        component: PageNotFoundComponent
      }
    ]),
-   Angulartics2Module.forRoot(),
-   MetaModule.forRoot()
+   Angulartics2Module.forRoot()
   ],
   providers: [
     Angulartics2GoogleAnalytics
