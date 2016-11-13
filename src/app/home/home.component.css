@@ -127,7 +127,7 @@ video {
 
 .text {
   position: relative;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0,0,0,0.7);
   color:white;
 }
 
@@ -163,6 +163,14 @@ video {
 }
 
 /* submit-section */
+.submit-section {
+  background:linear-gradient(
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.5)
+    ), url(../assets/images/beehive_page.jpg);
+  background-position: center center;
+  background-size: cover;
+}
 .submit-section .row{
   height: 100vh;
 }
