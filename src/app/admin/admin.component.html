@@ -28,15 +28,39 @@
   <div class="row">
     <div class="col-xs-12">
       <button type="button" class="btn btn-secondary" name="button" (click)="logout()">Log Out</button>
+      <br>
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let user of users | async">
 
-      <ul>
-        <li *ngFor="let user of users | async">
-           {{ user | json }}
+            <h4>Name : {{ user.fullName}}</h4>
+            <p>
+              Nick Name :{{ user.nickName}}
+            </p>
+            <p>
+              E-mail : {{ user.email}}
+            </p>
+            <p>
+              Age : {{ user.age}}
+            </p>
+            <p>
+              Purpose : {{ user.purpose}}
+            </p>
 
-           {{ user.fullName}}
-           {{ user.nickName}}
+            <p>
+              Workplace or School : {{ user.workplace }}
+            </p>
+
+            <p>
+              File : <a [href]="user.portfolioPath">download</a>
+            </p>
+
+            <p>
+              Time : {{ user.time | date:'medium'}}
+            </p>
         </li>
       </ul>
+
 
 
 
