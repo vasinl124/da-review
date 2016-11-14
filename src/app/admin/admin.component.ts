@@ -58,7 +58,6 @@ export class AdminComponent implements OnInit {
 
   getFileURL(id) {
     this.storageRef.child(id).getDownloadURL().then((url) => {
-      console.log(url);
       window.location.href= url;
     });
   }
