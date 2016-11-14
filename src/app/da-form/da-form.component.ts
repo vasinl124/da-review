@@ -72,39 +72,33 @@ export class DaFormComponent implements OnInit {
       var uploadTask = this.storageRef.child(value.portfolioPath)
       .put(this.portfolio)
       .then((snapshot) => {
-        
-        this.storageRef.child(value.portfolioPath).getDownloadURL().then((url) => {
-          value.portfolioPath = url;
-
-
-          // add data/ref to database;
-          let queryObservable = this.af.database.list('users', {
-            query: {
-             orderByChild: 'email',
-             equalTo: value.email
-            }
-          });
-
-          queryObservable.subscribe(queriedItems => {
-            if (queriedItems.length > 0) {
-              this.af.database.object(`users/${queriedItems[0].$key}`).update(value);
-            } else {
-              this.users = this.af.database.list('users');
-              this.users.push(value);
-            }
-          });
-
-          // adding email to mailing list
-          let mailchimpUrl = `
-          https://dreamaction.us14.list-manage.com/subscribe/post-json?u=a762fb13b6b4e5406f85f0d79&id=2680e8e29b&subscribe=Subscribe&EMAIL=${value.email}&c=JSONP_CALLBACK`;
-          this.jsonp.request(mailchimpUrl, { method: 'Get' })
-           .subscribe((res) => {
-             this.hideChildModal();
-             this._ngZone.run(() => {
-                 this.isRegistered = true;
-             });
-           });
+        // add data/ref to database;
+        let queryObservable = this.af.database.list('users', {
+          query: {
+           orderByChild: 'email',
+           equalTo: value.email
+          }
         });
+
+        queryObservable.subscribe(queriedItems => {
+          if (queriedItems.length > 0) {
+            this.af.database.object(`users/${queriedItems[0].$key}`).update(value);
+          } else {
+            this.users = this.af.database.list('users');
+            this.users.push(value);
+          }
+        });
+
+        // adding email to mailing list
+        let mailchimpUrl = `
+        https://dreamaction.us14.list-manage.com/subscribe/post-json?u=a762fb13b6b4e5406f85f0d79&id=2680e8e29b&subscribe=Subscribe&EMAIL=${value.email}&c=JSONP_CALLBACK`;
+        this.jsonp.request(mailchimpUrl, { method: 'Get' })
+         .subscribe((res) => {
+           this.hideChildModal();
+           this._ngZone.run(() => {
+               this.isRegistered = true;
+           });
+         });
       });
     }
   }

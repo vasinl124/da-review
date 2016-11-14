@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   loggedin = false;
   constructor(af: AngularFire, @Inject(FirebaseApp) firebaseApp: any) {
     this.af = af;
+    this.storageRef = firebaseApp.storage().ref();
   }
 
   ngOnInit() {
@@ -52,5 +53,13 @@ export class AdminComponent implements OnInit {
 
   logout() {
     this.af.auth.logout();
+  }
+
+
+  getFileURL(id) {
+    this.storageRef.child(id).getDownloadURL().then((url) => {
+      console.log(url);
+      window.location.href= url;
+    });
   }
 }
