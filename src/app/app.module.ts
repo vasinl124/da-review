@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
+import { AdminComponent } from './admin/admin.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -38,7 +39,8 @@ const myFirebaseAuthConfig = {
     HomeComponent,
     PageNotFoundComponent,
     FooterComponent,
-    TermsconditionsComponent
+    TermsconditionsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,10 @@ const myFirebaseAuthConfig = {
      {
        path: 'termsconditions',
        component: TermsconditionsComponent
+     },
+     {
+       path: 'admin',
+       component: AdminComponent
      },
      {
        path: '**',
